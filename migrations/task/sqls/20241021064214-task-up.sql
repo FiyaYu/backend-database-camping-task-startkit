@@ -277,8 +277,8 @@ AND status = '即將授課';
 -- 5-6. 查詢：計算用戶王小明的購買堂數，顯示須包含以下欄位： user_id , total。 (需使用到 SUM 函式與 Group By)
 
 SELECT 
-    "CREDIT_PURCHASE".user_id,
-    SUM ("CREDIT_PURCHASE".purchased_credits) AS total
+	"CREDIT_PURCHASE".user_id,
+	SUM ("CREDIT_PURCHASE".purchased_credits) AS total
 FROM "CREDIT_PURCHASE" 
 WHERE "CREDIT_PURCHASE".user_id = (SELECT id FROM "USER" WHERE email = 'wXlTq@hexschooltest.io')
 GROUP BY "CREDIT_PURCHASE".user_id;
@@ -351,8 +351,8 @@ LIMIT 1 ---只找最多的
 -- 顯示須包含以下欄位： 組合包方案名稱, 銷售數量
 
 SELECT 
-	"CREDIT_PACKAGE".name AS 組合包方案名稱,
-	COUNT(*) AS 銷售數量
+    "CREDIT_PACKAGE".name AS 組合包方案名稱,
+    COUNT(*) AS 銷售數量
 FROM "CREDIT_PURCHASE"
 INNER JOIN "CREDIT_PACKAGE" ON "CREDIT_PACKAGE".id = "CREDIT_PURCHASE".credit_package_id
 WHERE "CREDIT_PURCHASE".created_at >= '2024-11-01 00:00:00' AND "CREDIT_PURCHASE".created_at <= '2024-11-30 23:59:59'
@@ -363,7 +363,7 @@ GROUP BY "CREDIT_PACKAGE".name;
 -- 顯示須包含以下欄位： 總營收
 
 SELECT 
-	SUM (price_paid) AS 總營收
+    SUM (price_paid) AS 總營收
 FROM "CREDIT_PURCHASE"
 WHERE "CREDIT_PURCHASE".purchase_at >= '2024-11-01 00:00:00' AND "CREDIT_PURCHASE".purchase_at <= '2024-11-30 23:59:59';
 
@@ -372,7 +372,7 @@ WHERE "CREDIT_PURCHASE".purchase_at >= '2024-11-01 00:00:00' AND "CREDIT_PURCHAS
 -- 顯示須包含以下欄位： 預約會員人數
 
 SELECT 
-	COUNT (Distinct("COURSE_BOOKING".user_id)) AS 預約會員人數
+    COUNT (Distinct("COURSE_BOOKING".user_id)) AS 預約會員人數
 FROM "COURSE_BOOKING"
-WHERE "COURSE_BOOKING".created_at >= '2024-11-01 00:00:00' AND "COURSE_BOOKING".created_at <= '2024-11-30 23:59:59' 
+WHERE "COURSE_BOOKING".created_at >= '2024-1-01 00:00:00' AND "COURSE_BOOKING".created_at <= '2024-11-30 23:59:59' 
 AND "COURSE_BOOKING".status NOT IN ('課程已取消');
