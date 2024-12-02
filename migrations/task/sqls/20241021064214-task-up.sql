@@ -344,7 +344,7 @@ FROM "COACH_LINK_SKILL"
 INNER JOIN "SKILL" ON "SKILL".id = "COACH_LINK_SKILL".skill_id
 GROUP BY "SKILL".name
 ORDER BY coach_total DESC 
-LIMIT 1 ---只找最多的
+LIMIT 1; ---只找最多的
 
 
 -- 6-3. 查詢：計算 11 月份組合包方案的銷售數量
